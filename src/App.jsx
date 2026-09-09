@@ -1,5 +1,7 @@
+import { useState } from "react";
 import ReactLogo from './assets/react-logo.png'
 import './style.css'
+
 
 const content = [
   [
@@ -28,10 +30,12 @@ const content = [
 ];
 
 
-function App() {
+export default function App() {
+  const [activeContentIndex, setActiveContentIndex] = useState(0);
+
   return (
     <div>
-       <header>
+      <header>
         <img src={ReactLogo} alt="React logo" />
         <div>
           <h1>React.js</h1>
@@ -39,25 +43,27 @@ function App() {
         </div>
       </header>
 
-<div id="tabs">
-<menu>
-  <button>Why React?</button>
-  <button>Core Features</button>
-  <button>Related Resources</button>
-</menu>
-</div>
+      <div id="tabs">
+        <menu>
+          <button onClick={() => setActiveContentIndex(0)}>
+            Why React?
+          </button>
+          <button onClick={() => setActiveContentIndex(1)}>
+            Core Features
+          </button>
+          <button onClick={() => setActiveContentIndex(2)}>
+            Related Resources
+          </button>
+        </menu>
 
-<div id="tab-content">
+        <div id="tab-content">
           <ul>
-            <li>React is extremely popular</li>
-            <li>It makes building complex, interactive UIs a breeze</li>
-            <li>It's powerful & flexible</li>
-            <li>It has a very active and versatile ecosystem</li>
+            {content[activeContentIndex].map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>
-
-  )
+    </div>
+  );
 }
-
-export default App
