@@ -27,8 +27,6 @@ const content = [
   ]
 ];
 
-console.log(content[0]);
-console.log(content[3]);
 
 function App() {
   return (
